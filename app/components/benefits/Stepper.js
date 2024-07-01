@@ -1,16 +1,16 @@
 'use client'; 
-
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const steps = [
-  'Benefits Information',
-  'Members Details',
-  'Voluntary Risk Benefit Election',
-  'Declaration by the Employee',
-  'Investment Selection',
-  'Beneficiary Nomination - Death Benefits',
-  'Funeral Benefits Recipient',
+  { title: 'Welcome', description: 'Introduction to the onboarding process' },
+  { title: 'Benefits Information', description: 'Details about your benefits' },
+  { title: 'Members Details', description: 'Personal information and contact details' },
+  { title: 'Voluntary Risk Benefit Election', description: 'Election for voluntary risk benefits' },
+  { title: 'Declaration by the Employee', description: 'Employee declaration form' },
+  { title: 'Investment Selection', description: 'Choose your investment options' },
+  { title: 'Beneficiary Nomination - Death Benefits', description: 'Nominate your beneficiaries' },
+  { title: 'Funeral Benefits Recipient', description: 'Designate a recipient for funeral benefits' },
 ];
 
 const Stepper = ({ children }) => {
@@ -21,12 +21,15 @@ const Stepper = ({ children }) => {
 
   return (
     <div className="container mx-auto py-8">
-      <div className="steps mb-8 flex justify-between">
+      <div className="steps mb-4 flex justify-between">
         {steps.map((step, index) => (
           <div key={index} className={`step ${index === currentStep ? 'active' : ''}`}>
-            {step}
+            {step.title}
           </div>
         ))}
+      </div>
+      <div className="step-description mb-8 text-center text-lg text-dark-blue">
+        {steps[currentStep].description}
       </div>
       <AnimatePresence mode='wait'>
         <motion.div

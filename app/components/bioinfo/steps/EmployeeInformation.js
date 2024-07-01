@@ -1,18 +1,22 @@
-const BenefitsInformation = () => {
+const EmployeeInformation = () => {
     return (
       <div className="form-step">
-        <h2 className="form-title">Benefits Information</h2>
+        <h2 className="form-title">Employee Information</h2>
         <form className="form">
           <div className="form-group">
-            <label>Benefit Type</label>
+            <label>Full Name</label>
             <input type="text" className="form-input" />
           </div>
           <div className="form-group">
-            <label>Coverage Details</label>
+            <label>Date of Birth</label>
+            <input type="date" className="form-input" />
+          </div>
+          <div className="form-group">
+            <label>Employee ID</label>
             <input type="text" className="form-input" />
           </div>
           <div className="form-group">
-            <label>Plan Options</label>
+            <label>Position</label>
             <input type="text" className="form-input" />
           </div>
         </form>
@@ -20,5 +24,5 @@ const BenefitsInformation = () => {
     );
   };
   
-  export default BenefitsInformation;
+  export default EmployeeInformation;
   

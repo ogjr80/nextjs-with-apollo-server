@@ -5,13 +5,15 @@
 
 /* Custom styles */
 .container {
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
+  padding: 0 1rem;
 }
 
 .steps {
   display: flex;
   gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
 .step {
@@ -69,6 +71,13 @@
 .form-title {
   font-size: 2rem;
   color: #000080; /* Dark Blue */
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.form-description {
+  font-size: 1.25rem;
+  color: #333;
   margin-bottom: 2rem;
   text-align: center;
 }
