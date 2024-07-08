@@ -4,8 +4,8 @@ import Benefits from './components/benefits/page';
 const Home = () => {
   return (
     <div>
-      <BioPage />
-      {/* <Benefits />  */}
+      {/* <BioPage /> */}
+      <Benefits /> 
     </div>
   );
 };

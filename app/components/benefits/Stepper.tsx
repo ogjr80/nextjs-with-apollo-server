@@ -1,26 +1,35 @@
 'use client'; 
-import { useState } from 'react';
+
+import { useState, ReactNode } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const steps = [
+interface Step {
+  title: string;
+  description: string;
+}
+
+const steps: Step[] = [
   { title: 'Welcome', description: 'Introduction to the onboarding process' },
-  { title: 'Benefits Information', description: 'Details about your benefits' },
-  { title: 'Members Details', description: 'Personal information and contact details' },
-  { title: 'Voluntary Risk Benefit Election', description: 'Election for voluntary risk benefits' },
-  { title: 'Declaration by the Employee', description: 'Employee declaration form' },
+  { title: 'Member Details', description: 'Personal information and contact details' },
+  { title: 'Voluntary Risk Benefit Elections', description: 'Election for voluntary risk benefits' },
+  { title: 'Previous Paid-Up Benefits', description: 'Details about previous paid-up benefits' },
+  { title: 'Declaration by Employee', description: 'Employee declaration form' },
   { title: 'Investment Selection', description: 'Choose your investment options' },
-  { title: 'Beneficiary Nomination - Death Benefits', description: 'Nominate your beneficiaries' },
-  { title: 'Funeral Benefits Recipient', description: 'Designate a recipient for funeral benefits' },
+  { title: 'Beneficiary Nomination', description: 'Nominate your beneficiaries' },
 ];
 
-const Stepper = ({ children }) => {
+interface StepperProps {
+  children: ReactNode[];
+}
+
+const Stepper: React.FC<StepperProps> = ({ children }) => {
   const [currentStep, setCurrentStep] = useState(0);
 
   const nextStep = () => setCurrentStep((prev) => Math.min(prev + 1, steps.length - 1));
   const prevStep = () => setCurrentStep((prev) => Math.max(prev - 1, 0));
 
   return (
-    <div className="container mx-auto py-8">
+    <div className="container mx-auto py-8 px-4">
       <div className="steps mb-4 flex justify-between">
         {steps.map((step, index) => (
           <div key={index} className={`step ${index === currentStep ? 'active' : ''}`}>
