@@ -11,6 +11,7 @@ interface Step {
 const steps: Step[] = [
   { title: 'Welcome', description: 'Introduction to the onboarding process' },
   { title: 'Member Details', description: 'Personal information and contact details' },
+  { title: 'Member Address', description: 'Personal Address Information ' },
   { title: 'Voluntary Risk Benefit Elections', description: 'Election for voluntary risk benefits' },
   { title: 'Previous Paid-Up Benefits', description: 'Details about previous paid-up benefits' },
   { title: 'Declaration by Employee', description: 'Employee declaration form' },

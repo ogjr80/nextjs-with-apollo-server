@@ -6,7 +6,12 @@ const resolvers = {
       return await prisma.user.findUnique({
         where: { id },
         include: {
-          memberDetails: true,
+          memberDetails: {
+            include: {
+              physicalAddress: true,
+              postalAddress: true
+            }
+          },
           voluntaryRiskBenefit: true,
           previousPaidUpBenefits: true,
           investmentSelection: {
@@ -26,6 +31,15 @@ const resolvers = {
     },
     getMemberDetails: async (_, { id }) => {
       return await prisma.memberDetails.findUnique({
+        where: { id },
+        include: {
+          physicalAddress: true,
+          postalAddress: true
+        }
+      });
+    },
+    getAddress: async (_, { id }) => {
+      return await prisma.address.findUnique({
         where: { id },
       });
     },
@@ -71,34 +85,23 @@ const resolvers = {
       });
     },
     createMemberDetails: async (_, { input }) => {
-      const { physicalAddress, postalAddress, userId, ...memberDetails } = input;
-      const physicalAddressData = await prisma.address.create({ data: physicalAddress });
-      const postalAddressData = await prisma.address.create({ data: postalAddress });
-
       return await prisma.memberDetails.create({
-        data: {
-          ...memberDetails,
-          userId,
-          physicalAddressId: physicalAddressData.id,
-          postalAddressId: postalAddressData.id,
-        },
+        data: input,
       });
     },
     updateMemberDetails: async (_, { id, input }) => {
-      const { physicalAddress, postalAddress, ...memberDetails } = input;
-
-      await prisma.address.update({
-        where: { id: physicalAddress.id },
-        data: physicalAddress,
-      });
-      await prisma.address.update({
-        where: { id: postalAddress.id },
-        data: postalAddress,
-      });
-
       return await prisma.memberDetails.update({
         where: { id },
-        data: memberDetails,
+        data: input,
+      });
+    },
+    createAddress: async (_, { input }) => {
+      return await prisma.address.create({ data: input });
+    },
+    updateAddress: async (_, { id, input }) => {
+      return await prisma.address.update({
+        where: { id },
+        data: input,
       });
     },
     createVoluntaryRiskBenefit: async (_, { input }) => {
@@ -215,6 +218,4 @@ const resolvers = {
   },
 };
 
-
-  export default resolvers; 
-  
+export default resolvers;

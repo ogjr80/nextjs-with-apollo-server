@@ -6,10 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "mg": "npx prisma migrate dev && npx prisma generate",
+    "studio": "npx prisma studio"
   },
   "dependencies": {
-    "@apollo/client": "^3.10.2",
+    "@apollo/client": "^3.10.8",
+    "@apollo/experimental-nextjs-app-support": "^0.11.2",
     "@apollo/server": "^4.10.4",
     "@as-integrations/next": "^3.0.0",
     "@graphql-tools/mock": "^9.0.2",

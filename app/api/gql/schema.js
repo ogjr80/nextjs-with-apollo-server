@@ -1,5 +1,7 @@
 
 const schema = `#graphql
+#graphql
+
 enum Gender {
   MALE
   FEMALE
@@ -37,9 +39,9 @@ type MemberDetails {
   emailAddress: String!
   mobileNumber: String!
   alternateTelephoneNumber: String!
+  healthDetails: String
   physicalAddress: Address!
   postalAddress: Address!
-  healthDetails: String
   user: User!
 }
 
@@ -49,8 +51,6 @@ type Address {
   city: String!
   province: String!
   code: String!
-  memberDetailsPhysical: [MemberDetails!]!
-  memberDetailsPostal: [MemberDetails!]!
 }
 
 type VoluntaryRiskBenefit {
@@ -120,6 +120,7 @@ type FuneralRecipient {
 type Query {
   getUser(id: ID!): User
   getMemberDetails(id: ID!): MemberDetails
+  getAddress(id: ID!): Address
   getVoluntaryRiskBenefit(id: ID!): VoluntaryRiskBenefit
   getPreviousPaidUpBenefits(id: ID!): PreviousPaidUpBenefits
   getInvestmentSelection(id: ID!): InvestmentSelection
@@ -166,9 +167,9 @@ input MemberDetailsInput {
   emailAddress: String!
   mobileNumber: String!
   alternateTelephoneNumber: String!
-  physicalAddress: AddressInput!
-  postalAddress: AddressInput!
   healthDetails: String
+  physicalAddressId: ID!
+  postalAddressId: ID!
   userId: ID!
 }
 
@@ -231,6 +232,7 @@ input FuneralRecipientInput {
   relationship: String!
   dob: String!
 }
+
 
 `
 
